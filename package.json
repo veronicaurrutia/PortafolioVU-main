@@ -4,6 +4,7 @@
   "private": true,
   "description": "Portafolio de Verónica Urrutia, sitio estático (HTML, CSS y JS).",
   "scripts": {
-    "dev": "npx --yes serve src -l 3000"
+    "dev": "npx --yes serve src -l 3000",
+    "start": "npx --yes serve src -l 3000"
   }
 }

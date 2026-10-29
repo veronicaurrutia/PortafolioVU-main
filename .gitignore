@@ -4,3 +4,8 @@
 _version-anterior/
 .DS_Store
 node_modules/
+
+# No publicar
+Claude outputs/
+_to_delete/
+*.pdf

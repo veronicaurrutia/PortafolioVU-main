@@ -1,0 +1,144 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: >
+  VPC propia con Internet Gateway, Security Group para SSH,
+  subred privada e instancia EC2 t3.micro dentro de la subred privada.
+
+Parameters:
+  NombreProyecto:
+    Type: String
+    Default: cfn-lab
+    Description: Prefijo para nombrar los recursos.
+
+  VpcCidr:
+    Type: String
+    Default: 10.0.0.0/16
+    Description: Bloque CIDR de la VPC.
+
+  SubredPrivadaCidr:
+    Type: String
+    Default: 10.0.1.0/24
+    Description: Bloque CIDR de la subred privada.
+
+  SshCidrPermitido:
+    Type: String
+    Default: 0.0.0.0/0
+    Description: Rango IP autorizado para SSH (0.0.0.0/0 = desde cualquier lugar).
+
+  NombreKeyPair:
+    Type: String
+    Default: ''
+    Description: (Opcional) Nombre de un Key Pair existente para SSH. Déjalo vacío si no tienes uno.
+
+  AmiId:
+    Type: AWS::EC2::Image::Id
+    Description: ID de la AMI de Amazon Linux 2023 en la región del laboratorio (ej. ami-0abc123...).
+
+Conditions:
+  TieneKeyPair: !Not [!Equals [!Ref NombreKeyPair, '']]
+
+Resources:
+  # 1) VPC
+  MiVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: !Ref VpcCidr
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      Tags:
+        - Key: Name
+          Value: !Sub ${NombreProyecto}-vpc
+
+  # 2) Internet Gateway + asociación a la VPC
+  MiInternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: !Sub ${NombreProyecto}-igw
+
+  AsociacionIGW:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref MiVPC
+      InternetGatewayId: !Ref MiInternetGateway
+
+  # 3) Security Group que permite SSH
+  GrupoSeguridadSSH:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Permite acceso SSH por el puerto 22
+      VpcId: !Ref MiVPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: !Ref SshCidrPermitido
+          Description: Acceso SSH desde cualquier lugar
+      SecurityGroupEgress:
+        - IpProtocol: '-1'
+          CidrIp: 0.0.0.0/0
+          Description: Todo el trafico de salida
+      Tags:
+        - Key: Name
+          Value: !Sub ${NombreProyecto}-sg-ssh
+
+  # 4) Subred privada (sin IP pública y sin ruta al IGW)
+  SubredPrivada:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref MiVPC
+      CidrBlock: !Ref SubredPrivadaCidr
+      AvailabilityZone: !Select [0, !GetAZs '']
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: Name
+          Value: !Sub ${NombreProyecto}-subred-privada
+
+  TablaRutasPrivada:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref MiVPC
+      Tags:
+        - Key: Name
+          Value: !Sub ${NombreProyecto}-rt-privada
+
+  AsociacionTablaPrivada:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref SubredPrivada
+      RouteTableId: !Ref TablaRutasPrivada
+
+  # 5) Instancia EC2 t3.micro en la subred privada
+  InstanciaEC2:
+    Type: AWS::EC2::Instance
+    DependsOn: AsociacionIGW
+    Properties:
+      InstanceType: t3.micro
+      ImageId: !Ref AmiId
+      SubnetId: !Ref SubredPrivada
+      SecurityGroupIds:
+        - !Ref GrupoSeguridadSSH
+      KeyName: !If [TieneKeyPair, !Ref NombreKeyPair, !Ref 'AWS::NoValue']
+      Tags:
+        - Key: Name
+          Value: !Sub ${NombreProyecto}-ec2
+
+Outputs:
+  VpcId:
+    Description: ID de la VPC
+    Value: !Ref MiVPC
+  InternetGatewayId:
+    Description: ID del Internet Gateway
+    Value: !Ref MiInternetGateway
+  SecurityGroupId:
+    Description: ID del Security Group SSH
+    Value: !Ref GrupoSeguridadSSH
+  SubredPrivadaId:
+    Description: ID de la subred privada
+    Value: !Ref SubredPrivada
+  InstanciaId:
+    Description: ID de la instancia EC2
+    Value: !Ref InstanciaEC2
+  InstanciaIpPrivada:
+    Description: IP privada de la instancia EC2
+    Value: !GetAtt InstanciaEC2.PrivateIp

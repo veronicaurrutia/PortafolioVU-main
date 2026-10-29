@@ -1,0 +1,31 @@
+{
+  "expo": {
+    "name": "HelpPets",
+    "slug": "helppets",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "cl.helppets.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#232357",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "package": "cl.helppets.app"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "scheme": "helppets",
+    "plugins": [
+      "expo-dev-client"
+    ]
+  }
+}

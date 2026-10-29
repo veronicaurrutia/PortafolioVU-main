@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verónica Urrutia · Desarrolladora Full Stack</title>
+  <meta name="description" content="Desarrolladora full stack en Santiago, Chile. Diseño interfaces en Figma y las llevo a producción con React, Next.js, Angular y NestJS." />
+  <meta name="theme-color" content="#F4F6FA" />
+
+  <!-- Open Graph: así se ve el link cuando lo compartes en LinkedIn o WhatsApp -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Verónica Urrutia · Desarrolladora Full Stack" />
+  <meta property="og:description" content="Del diseño en Figma al código en producción. React, Next.js, Angular, NestJS." />
+  <meta property="og:url" content="https://portafolio-vu.vercel.app/" />
+  <meta property="og:image" content="https://portafolio-vu.vercel.app/img/dashboard.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#proyectos">Saltar a proyectos</a>
+
+  <header class="site-header" id="top">
+    <div class="wrap header-inner">
+      <a href="#top" class="brand" aria-label="Inicio">vu</a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav">Menú</button>
+      <nav class="site-nav" id="siteNav" aria-label="Principal">
+        <a href="#proyectos">Proyectos</a>
+        <a href="#experiencia">Experiencia</a>
+        <a href="#formacion">Formación</a>
+        <a href="#stack">Stack</a>
+        <a href="#contacto" class="nav-cta">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <h1 id="hero-title" class="hero-name">
+        <span>Verónica</span>
+        <span>Urrutia</span>
+      </h1>
+      <div class="hero-body">
+        <p class="hero-lead">
+          Desarrolladora full stack. Diseño la interfaz en Figma y la llevo a producción
+          con React, Next.js, Angular y NestJS.
+        </p>
+        <ul class="hero-facts" aria-label="Datos rápidos">
+          <li><strong>4+ años</strong> construyendo productos web</li>
+          <li><strong>Santiago, Chile</strong> remoto o híbrido</li>
+          <li><strong>Certificación AWS</strong> en preparación</li>
+        </ul>
+        <div class="hero-actions">
+          <a href="#proyectos" class="btn btn-primary">Ver proyectos</a>
+          <a href="mailto:vero.urrutiaa@gmail.com" class="btn btn-ghost">Escribirme</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROYECTOS DESTACADOS -->
+    <section id="proyectos" class="section wrap" aria-labelledby="proyectos-title">
+      <div class="section-head">
+        <h2 id="proyectos-title">Proyectos</h2>
+        <p>Sistemas que hoy usan empresas reales, más algunos casos de diseño.</p>
+      </div>
+
+      <article class="feature">
+        <figure class="shot">
+          <div class="shot-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+          <img src="img/dashboard.webp" width="1600" height="863" loading="lazy"
+               alt="Pantalla de inicio de sesión del tablero comercial DIT ERP" />
+        </figure>
+        <div class="feature-text">
+          <p class="feature-client">DIT Chile · Freelance</p>
+          <h3>DIT ERP: tablero comercial y de cobranza</h3>
+          <p>
+            Panel interno para consultar ventas, cartera pendiente y reportes conectados
+            al ERP Laudus, con acceso protegido por usuario y clave.
+          </p>
+          <dl class="feature-meta">
+            <dt>Mi rol</dt><dd>Diseño de interfaz, frontend e integración con la API de Laudus</dd>
+          </dl>
+          <ul class="chips"><li>Next.js</li><li>TypeScript</li><li>API Laudus</li></ul>
+        </div>
+      </article>
+
+      <article class="feature feature--flip">
+        <figure class="shot">
+          <div class="shot-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+          <img src="img/cotizador.webp" width="1600" height="863" loading="lazy"
+               alt="Cotizador de rehabilitación dental con configuración de orden y carga de archivos" />
+        </figure>
+        <div class="feature-text">
+          <p class="feature-client">DIT Chile · Freelance</p>
+          <h3>Cotizador de rehabilitación dental</h3>
+          <p>
+            El laboratorio configura el tipo de rehabilitación (cementada o atornillada), elige las
+            piezas, genera la orden y adjunta los archivos del caso en STL, DCM, DICOM o ZIP.
+          </p>
+          <dl class="feature-meta">
+            <dt>Mi rol</dt><dd>Flujo de la orden, carga de archivos y API</dd>
+          </dl>
+          <ul class="chips"><li>JavaScript</li><li>NestJS</li><li>Carga de archivos</li></ul>
+        </div>
+      </article>
+
+      <article class="feature">
+        <figure class="shot">
+          <div class="shot-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+          <img src="img/requerimientos.webp" width="1600" height="863" loading="lazy"
+               alt="Inicio de sesión de la Central de Requerimientos de Loginsa" />
+        </figure>
+        <div class="feature-text">
+          <p class="feature-client">Loginsa · Full Stack</p>
+          <h3>Central de requerimientos</h3>
+          <p>
+            Plataforma donde los clientes de Loginsa ingresan por empresa y gestionan sus
+            requerimientos, conectada al ecosistema del WMS de la compañía.
+          </p>
+          <dl class="feature-meta">
+            <dt>Mi rol</dt><dd>Desarrollo full stack, de las pantallas a los endpoints</dd>
+          </dl>
+          <ul class="chips"><li>Quasar (Vue)</li><li>NestJS</li><li>Azure DevOps</li></ul>
+        </div>
+      </article>
+
+      <!-- MÁS PROYECTOS -->
+      <h3 class="more-title">Más trabajo</h3>
+      <ul class="more-grid">
+        <li class="more-item">
+          <a href="https://www.behance.net/gallery/239371773/Caso-estudio-UXUI-HelpPets" target="_blank" rel="noopener">
+            <img src="img/HelpPets.webp" width="1600" height="853" loading="lazy" alt="Pantallas de la app HelpPets" />
+            <span class="more-name">HelpPets</span>
+            <span class="more-desc">Caso de estudio UX/UI: app para dueños de mascotas, de la investigación al prototipo.</span>
+            <span class="more-link">Ver en Behance</span>
+          </a>
+        </li>
+        <li class="more-item">
+          <a href="https://www.figma.com/design/6nVHLIhOM0pM3UiL9Q1k5O/Untitled?node-id=14-51&m=dev&t=7YNe8hnS6wr0WO5f-1" target="_blank" rel="noopener">
+            <img src="img/DigitalGreenhouse.webp" width="464" height="728" loading="lazy" alt="Diseño móvil de Digital Greenhouse" class="img-contain" />
+            <span class="more-name">Digital Greenhouse</span>
+            <span class="more-desc">Caso de estudio UX/UI con investigación de usuarios y prototipo en Figma.</span>
+            <span class="more-link">Ver en Figma</span>
+          </a>
+        </li>
+        <li class="more-item">
+          <div class="more-static">
+            <div class="placeholder" aria-hidden="true">CO₂</div>
+            <span class="more-name">Calculadora CO₂ · Greenhouse Market</span>
+            <span class="more-desc">Herramienta interna que calcula el ahorro de CO₂ y su equivalencia en árboles.</span>
+            <span class="more-link more-link--muted">Vue.js · TypeScript · Freelance</span>
+          </div>
+        </li>
+        <li class="more-item">
+          <div class="more-static">
+            <img src="img/ruletaSocial.webp" width="1600" height="863" loading="lazy" alt="Pantalla principal de Ruleta Social" />
+            <span class="more-name">Ruleta Social</span>
+            <span class="more-desc">Sorteos para reuniones: amigo secreto, reparto de tareas y sorteo simple.</span>
+            <span class="more-link more-link--muted">React · TypeScript</span>
+          </div>
+        </li>
+        <li class="more-item">
+          <div class="more-static">
+            <img src="img/mimusica.webp" width="1600" height="991" loading="lazy" alt="Pantalla de Mi Música con canciones destacadas" />
+            <span class="more-name">Mi Música</span>
+            <span class="more-desc">Interfaz para descubrir canciones, ver éxitos y guardar favoritas.</span>
+            <!-- TODO: completa el stack real de este proyecto -->
+            <span class="more-link more-link--muted">Proyecto personal</span>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- EXPERIENCIA -->
+    <section id="experiencia" class="section wrap" aria-labelledby="exp-title">
+      <div class="section-head">
+        <h2 id="exp-title">Experiencia</h2>
+        <p>Salud, logística y laboratorio dental: productos donde un error de interfaz cuesta caro.</p>
+      </div>
+      <ol class="timeline">
+        <li>
+          <span class="when">2026 – hoy</span>
+          <div>
+            <h3>DIT Chile <small>Full Stack · Freelance</small></h3>
+            <p>Plataforma para laboratorio dental. Diseñé el seguimiento de pedidos de punta a punta (MySQL, Sails.js y Angular), definí el control de acceso por roles e integré notificaciones por WhatsApp. También gestiono la infraestructura: imágenes Docker, servidor VPS y migración a GitLab.</p>
+          </div>
+        </li>
+        <li>
+          <span class="when">Jul 2024 – Ene 2026</span>
+          <div>
+            <h3>Loginsa <small>Full Stack & Analista TI</small></h3>
+            <p>Funcionalidades en React y Next.js para un sistema WMS, conectadas a APIs REST. Participé en cada feature desde la definición con producto hasta el despliegue, en sprints Scrum y Kanban.</p>
+          </div>
+        </li>
+        <li>
+          <span class="when">Oct 2020 – Jun 2024</span>
+          <div>
+            <h3>RayenSalud <small>Frontend · Data Model</small></h3>
+            <p>Interfaces en React para personal médico de la salud pública, responsivas para los distintos dispositivos de los centros de salud, trabajando con modelos de datos clínicos junto a backend y UX.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- FORMACIÓN -->
+    <section id="formacion" class="section wrap" aria-labelledby="formacion-title">
+      <div class="section-head">
+        <h2 id="formacion-title">Formación y certificaciones</h2>
+        <p>Sigo estudiando: ahora mismo, cloud con AWS.</p>
+      </div>
+      <ul class="timeline creds">
+        <li class="is-current">
+          <span class="when">En preparación</span>
+          <div>
+            <h3>Certificación AWS <small>Amazon Web Services</small></h3>
+            <p>Preparando el examen de certificación de AWS.</p>
+          </div>
+        </li>
+        <li>
+          <span class="when">482 horas</span>
+          <div>
+            <h3>Trainee Cloud / Administradora Cloud Jr. <small>AWS re/Start</small></h3>
+            <p>Formación práctica en administración cloud sobre AWS.</p>
+          </div>
+        </li>
+        <li>
+          <span class="when">En curso</span>
+          <div>
+            <h3>Ingeniería en Informática <small>Universidad San Sebastián</small></h3>
+          </div>
+        </li>
+        <li>
+          <span class="when">2025</span>
+          <div>
+            <h3>Certificación UX/UI <small>Desafío Latam</small></h3>
+          </div>
+        </li>
+        <li>
+          <span class="when">2024</span>
+          <div>
+            <h3>Modelamiento de bases de datos y SQL <small>PUC Chile</small></h3>
+          </div>
+        </li>
+        <li>
+          <span class="when">2023</span>
+          <div>
+            <h3>Azure DevOps de cero a experto <small>Udemy</small></h3>
+          </div>
+        </li>
+        <li>
+          <span class="when">Bootcamp</span>
+          <div>
+            <h3>Desarrolladora Front-End <small>Laboratoria</small></h3>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- STACK -->
+    <section id="stack" class="section wrap" aria-labelledby="stack-title">
+      <div class="section-head">
+        <h2 id="stack-title">Stack</h2>
+        <p>Lo que uso en el día a día.</p>
+      </div>
+      <div class="stack-grid">
+        <div><h3>Frontend</h3><p>TypeScript, React, Next.js, Angular, Vue / Quasar, Tailwind</p></div>
+        <div><h3>Backend</h3><p>Node.js, NestJS, Sails.js, APIs REST, MySQL</p></div>
+        <div><h3>Cloud y DevOps</h3><p>AWS (EC2), Docker, Azure DevOps, GitLab, VPS</p></div>
+        <div><h3>Diseño</h3><p>Figma, investigación UX, prototipos, design systems, accesibilidad (WCAG)</p></div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="section contact wrap" aria-labelledby="contact-title">
+      <h2 id="contact-title">¿Tienes un proyecto o un cargo abierto?</h2>
+      <p>Disponible para proyectos freelance y cargos full stack.</p>
+      <a class="contact-mail" href="mailto:vero.urrutiaa@gmail.com">vero.urrutiaa@gmail.com</a>
+      <ul class="contact-links">
+        <li><a href="https://www.linkedin.com/in/veronica-urrutia" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://github.com/veronicaurrutia" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.behance.net/veronicurrutia" target="_blank" rel="noopener">Behance</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer wrap">
+    <p>© <span id="year">2026</span> Verónica Urrutia. Diseñado y desarrollado por mí.</p>
+    <a href="#top">Volver arriba</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

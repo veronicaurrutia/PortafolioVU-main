@@ -1,0 +1,55 @@
+import type { NewPetAlert } from '../types/models';
+
+/** Mismos datos de ejemplo que la versión web (mockData.ts), para poblar Firestore en desarrollo. */
+export const samplePets: NewPetAlert[] = [
+  {
+    name: 'Luna',
+    petType: 'dog',
+    age: '3 años',
+    breed: 'Perra mestiza',
+    lastSeen: 'Plaza Ñuñoa, sector juegos infantiles',
+    description: 'Luna es muy dócil y llevaba un collar rosado. Se perdió después de un paseo.',
+    status: 'lost',
+    area: 'Ñuñoa',
+  },
+  {
+    name: 'Rocky',
+    petType: 'dog',
+    age: '2 años',
+    breed: 'Beagle',
+    lastSeen: 'Maipú, Av. 5 de Abril cerca de un supermercado',
+    description: 'Rocky fue visto corriendo hacia el parque. No lleva collar, pero responde a su nombre.',
+    status: 'seen',
+    area: 'Maipú',
+  },
+  {
+    name: 'Michi',
+    petType: 'cat',
+    age: '1 año',
+    breed: 'Gato europeo',
+    lastSeen: 'Providencia, Plaza Las Lilas',
+    description: 'Michi fue visto arriba de un auto estacionado. Muy asustadizo, no se deja tomar.',
+    status: 'lost',
+    area: 'Providencia',
+  },
+  {
+    name: 'Simba',
+    petType: 'dog',
+    age: '4 años',
+    breed: 'Labrador',
+    lastSeen: 'Hospital Clínico, Independencia',
+    description: 'Simba ya regresó a casa y se encuentra sano y salvo. El caso fue marcado como resuelto.',
+    status: 'found',
+    area: 'Independencia',
+  },
+  {
+    name: 'Lío',
+    petType: 'dog',
+    age: '5 años',
+    breed: 'Mestizo mediano',
+    lastSeen: 'Parque Inés de Suárez',
+    description: 'Pelaje blanco con gris, ojos marrones. Muy amigable pero asustadizo.',
+    status: 'lost',
+    area: 'Providencia',
+  },
+];

@@ -1,0 +1,9 @@
+{
+  "name": "portafolio-vu",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portafolio de Verónica Urrutia, sitio estático (HTML, CSS y JS).",
+  "scripts": {
+    "dev": "npx --yes serve src -l 3000"
+  }
+}

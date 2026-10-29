@@ -1,13 +1,20 @@
 /* ==================== TOKENS ==================== */
+/* Acero y latón: el mismo material de los engranajes del hero */
 :root {
-  --paper: #F4F6FA;
-  --surface: #FFFFFF;
-  --ink: #121A2E;
-  --muted: #586178;
-  --line: #DCE1EA;
-  --accent: #2B44D6;
+  --paper: #ECEEF1;
+  --surface: #F8F9FA;
+  --ink: #18202C;
+  --muted: #545E6D;
+  --line: #CDD3DB;
+  --accent: #85600F;      /* latón, para texto y botones (contraste AA) */
   --accent-ink: #FFFFFF;
-  --accent-soft: #E6EAFF;
+  --accent-soft: #F1E4C6;
+  --brass: #C8962E;       /* latón brillante, solo para ilustración */
+  --steel: #7D8898;
+  --gear-fill: #F8F9FA;
+  --band: #1E2733;        /* sección Cómo trabajo */
+  --band-ink: #E9EDF2;
+  --band-muted: #A4AEBC;
 
   --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
   --font-body: 'Instrument Sans', system-ui, sans-serif;
@@ -21,14 +28,20 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --paper: #0E1322;
-    --surface: #161C2E;
-    --ink: #EEF1F8;
-    --muted: #9AA3B8;
-    --line: #273049;
-    --accent: #8EA0FF;
-    --accent-ink: #0E1322;
-    --accent-soft: #1E2750;
+    --paper: #141920;
+    --surface: #1B222B;
+    --ink: #E8ECF1;
+    --muted: #9BA5B3;
+    --line: #2C3540;
+    --accent: #E0AE4C;
+    --accent-ink: #141920;
+    --accent-soft: #3A2F18;
+    --brass: #E0AE4C;
+    --steel: #6E7A8A;
+    --gear-fill: #1B222B;
+    --band: #0E1217;
+    --band-ink: #E8ECF1;
+    --band-muted: #97A1AE;
     color-scheme: dark;
   }
 }
@@ -136,41 +149,173 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; letter-spacing:
 
 /* ==================== HERO ==================== */
 .hero {
-  padding-top: clamp(48px, 10vh, 120px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: 32px clamp(24px, 4vw, 64px);
+  align-items: center;
+  padding-top: clamp(40px, 8vh, 96px);
   padding-bottom: clamp(56px, 10vh, 112px);
 }
 
 .hero-name {
-  font-size: clamp(3.25rem, 12.5vw, 10rem);
+  font-size: clamp(3.25rem, 8.2vw, 7.5rem);
   font-weight: 800;
   line-height: .9;
   letter-spacing: -0.055em;
   display: flex;
   flex-direction: column;
 }
-.hero-name span:last-child {
-  padding-left: clamp(0px, 9vw, 140px);
-  color: var(--accent);
-}
-
-.hero-body {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-  gap: 24px 64px;
-  margin-top: clamp(32px, 5vw, 56px);
-  align-items: start;
-}
+.hero-name span:last-child { padding-left: clamp(0px, 5vw, 80px); }
 
 .hero-lead {
-  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-size: clamp(1.15rem, 1.7vw, 1.4rem);
   line-height: 1.45;
-  max-width: 32ch;
+  max-width: 30ch;
+  margin-top: clamp(24px, 3vw, 40px);
 }
 
-.hero-facts { display: grid; gap: 10px; color: var(--muted); }
+.hero-facts { display: grid; gap: 8px; color: var(--muted); margin-top: 24px; }
 .hero-facts strong { color: var(--ink); font-weight: 600; margin-right: 6px; }
 
-.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; grid-column: 1 / -1; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+
+/* ==================== MECANISMO (engranajes) ==================== */
+.machine { position: relative; }
+
+.machine-stage {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background-color: var(--surface);
+  /* papel milimetrado, como un plano mecánico */
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: -1px -1px;
+  overflow: hidden;
+}
+.machine-stage::after {
+  /* suaviza la grilla hacia los bordes */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 35%, var(--surface) 92%);
+  pointer-events: none;
+}
+
+#gears {
+  display: block;
+  width: 100%;
+  height: min(52vh, 440px);
+  min-height: 300px;
+  position: relative;
+  z-index: 1;
+}
+
+.gear { cursor: pointer; outline: none; }
+.gear-body {
+  fill: var(--gear-fill);
+  stroke: var(--steel);
+  stroke-width: 2;
+  transition: fill .2s ease, stroke .2s ease;
+}
+.gear-pitch { fill: none; stroke: var(--steel); stroke-width: 1; stroke-dasharray: 3 6; opacity: .55; }
+.gear-axle { fill: var(--steel); }
+.gear-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  fill: var(--muted);
+  pointer-events: none;
+  transition: fill .2s ease;
+}
+.gear:hover .gear-body { stroke: var(--ink); }
+.gear.is-active .gear-body { fill: var(--brass); stroke: var(--accent); }
+.gear.is-active .gear-axle { fill: var(--ink); }
+.gear.is-active .gear-label { fill: var(--ink); }
+.gear:focus-visible .gear-body { stroke: var(--ink); stroke-width: 4; }
+
+.machine-pause {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  z-index: 2;
+  font: 600 .85rem var(--font-body);
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+.machine-pause:hover { border-color: var(--ink); }
+
+.machine-panel {
+  border: 1px solid var(--line);
+  border-top: 0;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  background: var(--surface);
+  padding: 18px 22px 20px;
+  min-height: 132px;
+}
+.machine-name { font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; }
+.machine-desc { color: var(--muted); margin-top: 4px; max-width: 52ch; }
+.machine-tools { font-size: .92rem; font-weight: 600; color: var(--accent); margin-top: 10px; }
+
+/* ==================== CÓMO TRABAJO ==================== */
+.process {
+  background: var(--band);
+  color: var(--band-ink);
+  padding-block: clamp(64px, 9vw, 112px);
+}
+.process .section-head p { color: var(--band-muted); }
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 40px 32px;
+  counter-reset: step;
+  position: relative;
+}
+/* la "correa" que une las etapas */
+.steps::before {
+  content: '';
+  position: absolute;
+  top: 31px;
+  left: 32px;
+  right: 24%;
+  border-top: 2px dashed color-mix(in srgb, var(--band-muted) 55%, transparent);
+}
+.steps li { position: relative; }
+.step-gear {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--brass);
+  margin-bottom: 20px;
+  isolation: isolate;
+}
+.step-gear::before {
+  /* engranaje pequeño dibujado con una máscara SVG */
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--brass);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 56'%3E%3Cpath fill-rule='evenodd' d='M21.5%208.0%20L24.5%207.3%20L25.6%201.1%20L30.4%201.1%20L31.5%207.3%20L34.5%208.0%20L37.3%209.2%20L41.9%204.8%20L45.7%207.6%20L43.0%2013.3%20L45.0%2015.7%20L46.6%2018.2%20L52.8%2017.4%20L54.3%2021.9%20L48.8%2025.0%20L49.0%2028.0%20L48.8%2031.0%20L54.3%2034.1%20L52.8%2038.6%20L46.6%2037.8%20L45.0%2040.3%20L43.0%2042.7%20L45.7%2048.4%20L41.9%2051.2%20L37.3%2046.8%20L34.5%2048.0%20L31.5%2048.7%20L30.4%2054.9%20L25.6%2054.9%20L24.5%2048.7%20L21.5%2048.0%20L18.7%2046.8%20L14.1%2051.2%20L10.3%2048.4%20L13.0%2042.7%20L11.0%2040.3%20L9.4%2037.8%20L3.2%2038.6%20L1.7%2034.1%20L7.2%2031.0%20L7.0%2028.0%20L7.2%2025.0%20L1.7%2021.9%20L3.2%2017.4%20L9.4%2018.2%20L11.0%2015.7%20L13.0%2013.3%20L10.3%207.6%20L14.1%204.8%20L18.7%209.2Z%20M28%2017a11%2011%200%201%200%200.01%200Z'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 56'%3E%3Cpath fill-rule='evenodd' d='M21.5%208.0%20L24.5%207.3%20L25.6%201.1%20L30.4%201.1%20L31.5%207.3%20L34.5%208.0%20L37.3%209.2%20L41.9%204.8%20L45.7%207.6%20L43.0%2013.3%20L45.0%2015.7%20L46.6%2018.2%20L52.8%2017.4%20L54.3%2021.9%20L48.8%2025.0%20L49.0%2028.0%20L48.8%2031.0%20L54.3%2034.1%20L52.8%2038.6%20L46.6%2037.8%20L45.0%2040.3%20L43.0%2042.7%20L45.7%2048.4%20L41.9%2051.2%20L37.3%2046.8%20L34.5%2048.0%20L31.5%2048.7%20L30.4%2054.9%20L25.6%2054.9%20L24.5%2048.7%20L21.5%2048.0%20L18.7%2046.8%20L14.1%2051.2%20L10.3%2048.4%20L13.0%2042.7%20L11.0%2040.3%20L9.4%2037.8%20L3.2%2038.6%20L1.7%2034.1%20L7.2%2031.0%20L7.0%2028.0%20L7.2%2025.0%20L1.7%2021.9%20L3.2%2017.4%20L9.4%2018.2%20L11.0%2015.7%20L13.0%2013.3%20L10.3%207.6%20L14.1%204.8%20L18.7%209.2Z%20M28%2017a11%2011%200%201%200%200.01%200Z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.steps h3 { font-size: 1.3rem; font-weight: 700; }
+.steps p { color: var(--band-muted); margin-top: 8px; max-width: 34ch; }
+
+/* la sección oscura no lleva la línea superior de las demás */
+.process + .section::before { display: none; }
 
 .btn {
   display: inline-flex;
@@ -190,11 +335,12 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; letter-spacing:
 
 /* Una sola animación de entrada, en el hero */
 @media (prefers-reduced-motion: no-preference) {
-  .hero-name span, .hero-body {
+  .hero-name span, .hero-text > :not(h1), .machine {
     animation: rise .8s cubic-bezier(.2, .7, .2, 1) both;
   }
   .hero-name span:last-child { animation-delay: .08s; }
-  .hero-body { animation-delay: .2s; }
+  .hero-text > :not(h1) { animation-delay: .2s; }
+  .machine { animation-delay: .3s; }
 }
 @keyframes rise {
   from { opacity: 0; transform: translateY(24px); }
@@ -394,7 +540,9 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; letter-spacing:
 
 /* ==================== RESPONSIVE ==================== */
 @media (max-width: 900px) {
-  .hero-body { grid-template-columns: 1fr; }
+  .hero { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .steps::before { display: none; }
   .feature, .feature--flip { grid-template-columns: 1fr; }
   .feature--flip .shot { order: 0; }
   .stack-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -420,6 +568,7 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; letter-spacing:
   .site-nav a { padding: 12px 0; font-size: 1.05rem; }
   .site-nav .nav-cta { border: 0; padding: 12px 0; }
   .stack-grid { grid-template-columns: 1fr; gap: 24px; }
+  .steps { grid-template-columns: 1fr; gap: 32px; }
   .hero-name span:last-child { padding-left: 0; }
 }
 

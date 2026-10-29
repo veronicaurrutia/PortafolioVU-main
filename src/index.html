@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Verónica Urrutia · Desarrolladora Full Stack</title>
   <meta name="description" content="Desarrolladora full stack en Santiago, Chile. Diseño interfaces en Figma y las llevo a producción con React, Next.js, Angular y NestJS." />
-  <meta name="theme-color" content="#F4F6FA" />
+  <meta name="theme-color" content="#ECEEF1" />
 
   <!-- Open Graph: así se ve el link cuando lo compartes en LinkedIn o WhatsApp -->
   <meta property="og:type" content="website" />
@@ -30,6 +30,7 @@
       <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav">Menú</button>
       <nav class="site-nav" id="siteNav" aria-label="Principal">
         <a href="#proyectos">Proyectos</a>
+        <a href="#proceso">Cómo trabajo</a>
         <a href="#experiencia">Experiencia</a>
         <a href="#formacion">Formación</a>
         <a href="#stack">Stack</a>
@@ -41,14 +42,14 @@
   <main>
     <!-- HERO -->
     <section class="hero wrap" aria-labelledby="hero-title">
-      <h1 id="hero-title" class="hero-name">
-        <span>Verónica</span>
-        <span>Urrutia</span>
-      </h1>
-      <div class="hero-body">
+      <div class="hero-text">
+        <h1 id="hero-title" class="hero-name">
+          <span>Verónica</span>
+          <span>Urrutia</span>
+        </h1>
         <p class="hero-lead">
-          Desarrolladora full stack. Diseño la interfaz en Figma y la llevo a producción
-          con React, Next.js, Angular y NestJS.
+          Desarrolladora full stack. Diseño, frontend, backend e infraestructura:
+          me encargo de que todas las piezas giren juntas.
         </p>
         <ul class="hero-facts" aria-label="Datos rápidos">
           <li><strong>4+ años</strong> construyendo productos web</li>
@@ -60,6 +61,19 @@
           <a href="mailto:vero.urrutiaa@gmail.com" class="btn btn-ghost">Escribirme</a>
         </div>
       </div>
+
+      <!-- Mecanismo: cada engranaje es una parte del trabajo. Lo dibuja script.js -->
+      <figure class="machine" aria-labelledby="machine-caption">
+        <div class="machine-stage">
+          <svg id="gears" viewBox="0 0 560 520" role="group" aria-label="Engranajes de mi trabajo: elige uno para ver qué hago en esa parte"></svg>
+          <button class="machine-pause" id="gearPause" type="button" aria-pressed="false">Pausar</button>
+        </div>
+        <figcaption id="machine-caption" class="machine-panel" aria-live="polite">
+          <p class="machine-name" id="gearName">Frontend</p>
+          <p class="machine-desc" id="gearDesc">Interfaces en React, Next.js, Angular y Vue: rápidas, accesibles y fieles al diseño.</p>
+          <p class="machine-tools" id="gearTools">React, Next.js, Angular, Vue, TypeScript, Tailwind</p>
+        </figcaption>
+      </figure>
     </section>
 
     <!-- PROYECTOS DESTACADOS -->
@@ -176,6 +190,38 @@
       </ul>
     </section>
 
+    <!-- CÓMO TRABAJO -->
+    <section id="proceso" class="process" aria-labelledby="proceso-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="proceso-title">Cómo trabajo</h2>
+          <p>Cuatro etapas, y sigo a cargo después del lanzamiento.</p>
+        </div>
+        <ol class="steps">
+          <li>
+            <span class="step-gear" aria-hidden="true">1</span>
+            <h3>Entender el problema</h3>
+            <p>Converso con quienes usan el sistema y con producto. Defino qué tiene que resolver antes de dibujar una pantalla.</p>
+          </li>
+          <li>
+            <span class="step-gear" aria-hidden="true">2</span>
+            <h3>Diseñar</h3>
+            <p>Prototipo en Figma, lo valido con el equipo y dejo listos los componentes y estados.</p>
+          </li>
+          <li>
+            <span class="step-gear" aria-hidden="true">3</span>
+            <h3>Construir</h3>
+            <p>Frontend y API en paralelo, con TypeScript, revisiones de código y entregas en cada sprint.</p>
+          </li>
+          <li>
+            <span class="step-gear" aria-hidden="true">4</span>
+            <h3>Desplegar y mantener</h3>
+            <p>Contenedores Docker, CI/CD en GitLab o Azure DevOps y servidores en AWS o VPS.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
     <!-- EXPERIENCIA -->
     <section id="experiencia" class="section wrap" aria-labelledby="exp-title">
       <div class="section-head">
@@ -268,10 +314,10 @@
         <p>Lo que uso en el día a día.</p>
       </div>
       <div class="stack-grid">
+        <div><h3>Diseño</h3><p>Figma, investigación UX, prototipos, design systems, accesibilidad (WCAG)</p></div>
         <div><h3>Frontend</h3><p>TypeScript, React, Next.js, Angular, Vue / Quasar, Tailwind</p></div>
         <div><h3>Backend</h3><p>Node.js, NestJS, Sails.js, APIs REST, MySQL</p></div>
         <div><h3>Cloud y DevOps</h3><p>AWS (EC2), Docker, Azure DevOps, GitLab, VPS</p></div>
-        <div><h3>Diseño</h3><p>Figma, investigación UX, prototipos, design systems, accesibilidad (WCAG)</p></div>
       </div>
     </section>
 
